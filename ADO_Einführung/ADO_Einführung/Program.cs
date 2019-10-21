@@ -33,9 +33,20 @@ namespace ADO_Einführung
             //string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=True;";
             string connectionString = "defaultConnection";
 
+            // ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
+            // var firstString = settings[1];
+
+            // Verschlüsseln:
+            // https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/connection-strings-and-configuration-files
+            // System.Configuration
+
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            ConfigurationSection section = config.GetSection("connectionStrings");
+            section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+            config.Save(); // Ab hier verschlüsselt !
+
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
             var firstString = settings[1];
-
 
             // Variante 1)
             #region Variante 1 ohne using
