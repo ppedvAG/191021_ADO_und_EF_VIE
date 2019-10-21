@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 // using System.Data
 
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ADO_Einführung
 {
@@ -29,7 +30,12 @@ namespace ADO_Einführung
             // string connectionString = @"Server=.;Database=Northwind;Trusted_Connection=True;";
             // string connectionStringAlt = @"Data Source=.;Inital Catalog=Northwind;Integrated Security=true";
             // ConnectionString für Trainer-PC:
-            string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=True;";
+            //string connectionString = @"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=True;";
+            string connectionString = "defaultConnection";
+
+            ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
+            var firstString = settings[1];
+
 
             // Variante 1)
             #region Variante 1 ohne using
@@ -51,7 +57,7 @@ namespace ADO_Einführung
             #endregion
             // Variante 2)
 
-            using(var con = new SqlConnection(connectionString))
+            using (var con = new SqlConnection(firstString.ConnectionString))
             {
                 con.Open();
                 // Alternativer Aufbau eines Commands:
