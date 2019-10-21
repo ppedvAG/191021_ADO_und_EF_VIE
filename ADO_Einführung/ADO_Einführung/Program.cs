@@ -73,7 +73,35 @@ namespace ADO_Einführung
                         employees.Add(emp);
                         Console.WriteLine($"Name: {emp.LastName}\tBirth:{emp.BirthDate:d}\tHire:{emp.HireDate:d}");
                     }
+                    reader.Close();
                     // Man könnte hier zb mit der Liste weiterarbeiten
+                }
+
+                // Übung:
+                // In der Konsole kann man einen Nachnamen eingeben
+                // -> Alle Personen, die den Nachnamen haben
+                // Beispiel:
+                // >"Bitte geben Sie den Suchbegriff ein:"
+                // >D
+                // > --- Alle Personen, deren Nachname mit D anfängt
+
+                using (var command = con.CreateCommand())
+                {
+                    Console.WriteLine("Bitte geben Sie den Nachnamen ein:");
+                    string suchtext = Console.ReadLine();
+
+                    command.CommandText = $"SELECT * FROM Employees WHERE LastName Like '{suchtext}%'";
+                    var reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        // DTO -> Data Transfer Object
+                        var firstName = (string)reader["FirstName"]; // Mit Indexer auf die Spalte direkt zugreifen
+                        var lastName = (string)reader["LastName"];
+                        var birthDate = (DateTime)reader["BirthDate"];
+
+                        Console.WriteLine($"Name: {firstName} {lastName}\tBirth:{birthDate:d}");
+                    }
                 }
 
             } // con.Close();
