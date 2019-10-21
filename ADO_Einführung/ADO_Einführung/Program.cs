@@ -90,8 +90,14 @@ namespace ADO_Einführung
                     Console.WriteLine("Bitte geben Sie den Nachnamen ein:");
                     string suchtext = Console.ReadLine();
 
-                    command.CommandText = $"SELECT * FROM Employees WHERE LastName Like '{suchtext}%'";
+                    command.CommandText = $"SELECT * FROM Employees WHERE LastName Like @suche+'%'";
+                    command.Parameters.AddWithValue("@suche", suchtext);
+
+                    
                     var reader = command.ExecuteReader();
+                    
+                    // SQLInjection mit : 'D%'; Create Database HACKED --
+                    // oder:                 0; Create Database HACKED --
 
                     while (reader.Read())
                     {
