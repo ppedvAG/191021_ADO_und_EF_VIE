@@ -72,12 +72,13 @@ namespace ADO_Einführung
             {
                 con.Open();
                 // Alternativer Aufbau eines Commands:
-                using(var command = con.CreateCommand()) // Setzt das Connection-Property automatisch
+                List<Employee> employees = new List<Employee>();
+                using (var command = con.CreateCommand()) // Setzt das Connection-Property automatisch
                 {
                     command.CommandText = "SELECT * FROM Employees";
                     var reader = command.ExecuteReader();
-                    List<Employee> employees = new List<Employee>();
-                    while(reader.Read())
+
+                    while (reader.Read())
                     {
                         // DTO -> Data Transfer Object
                         Employee emp = new Employee();
@@ -110,9 +111,9 @@ namespace ADO_Einführung
                     command.CommandText = $"SELECT * FROM Employees WHERE LastName Like @suche+'%'";
                     command.Parameters.AddWithValue("@suche", suchtext);
 
-                    
+
                     var reader = command.ExecuteReader();
-                    
+
                     // SQLInjection mit : 'D%'; Create Database HACKED --
                     // oder:                 0; Create Database HACKED --
 
@@ -125,8 +126,28 @@ namespace ADO_Einführung
 
                         Console.WriteLine($"Name: {firstName} {lastName}\tBirth:{birthDate:d}");
                     }
+                    reader.Close();
                 }
 
+                // Personen jünger machen
+                foreach (var item in employees)
+                {
+                    using (var command = con.CreateCommand())
+                    {
+                        item.BirthDate = item.BirthDate.AddDays(365); // Jünger machen 
+                        command.CommandText = $"UPDATE Employees SET BirthDate = @bdate WHERE EmployeeID = @id"; // absicht :)
+                        command.Parameters.AddWithValue("@bdate", item.BirthDate);
+                        command.Parameters.AddWithValue("@id", item.ID);
+
+                        var kapputeZeilen = command.ExecuteNonQuery();
+                        if (kapputeZeilen == 0)
+                            Console.WriteLine("Da hat was nicht geklappt -> Keine Person wurde verändert");
+                        else if (kapputeZeilen == 1)
+                            Console.WriteLine($"{item.LastName} wurde um 1 Jahr jünger");
+                        else
+                            Console.WriteLine("PANIK !!! Where vergessen ?");
+                    }
+                }
             } // con.Close();
 
 
