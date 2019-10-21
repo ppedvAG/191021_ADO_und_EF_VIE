@@ -132,20 +132,37 @@ namespace ADO_Einführung
                 // Personen jünger machen
                 foreach (var item in employees)
                 {
-                    using (var command = con.CreateCommand())
+                    using (var trans = con.BeginTransaction(System.Data.IsolationLevel.ReadCommitted)) // Sperrt alles (im SSMS getestet)
                     {
-                        item.BirthDate = item.BirthDate.AddDays(365); // Jünger machen 
-                        command.CommandText = $"UPDATE Employees SET BirthDate = @bdate WHERE EmployeeID = @id"; // absicht :)
-                        command.Parameters.AddWithValue("@bdate", item.BirthDate);
-                        command.Parameters.AddWithValue("@id", item.ID);
+                        try
+                        {
+                            using (var command = con.CreateCommand())
+                            {
+                                item.BirthDate = item.BirthDate.AddDays(365); // Jünger machen 
+                                command.CommandText = $"UPDATE Employees SET BirthDate = @bdate ";// WHERE EmployeeID = @id"; // absicht :)
+                                command.Parameters.AddWithValue("@bdate", item.BirthDate);
+                                command.Parameters.AddWithValue("@id", item.ID);
+                                command.Transaction = trans; // Zugehörige Transaktion
 
-                        var kapputeZeilen = command.ExecuteNonQuery();
-                        if (kapputeZeilen == 0)
-                            Console.WriteLine("Da hat was nicht geklappt -> Keine Person wurde verändert");
-                        else if (kapputeZeilen == 1)
-                            Console.WriteLine($"{item.LastName} wurde um 1 Jahr jünger");
-                        else
-                            Console.WriteLine("PANIK !!! Where vergessen ?");
+                                var kapputeZeilen = command.ExecuteNonQuery();
+
+                                if (kapputeZeilen == 0)
+                                    Console.WriteLine("Da hat was nicht geklappt -> Keine Person wurde verändert");
+                                else if (kapputeZeilen == 1)
+                                    Console.WriteLine($"{item.LastName} wurde um 1 Jahr jünger");
+                                else
+                                {
+                                    Console.WriteLine("PANIK !!! Where vergessen ?");
+                                    throw new InvalidOperationException("Transaktion Fehlgeschlagen - WHERE vergessen");
+                                }
+                            }
+                            // Wenn wir hier ankommen -> alles passt
+                            trans.Commit();
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            trans.Rollback();
+                        }
                     }
                 }
             } // con.Close();
