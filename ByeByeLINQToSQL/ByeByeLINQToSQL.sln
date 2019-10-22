@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByeByeLINQToSQL", "ByeByeLINQToSQL\ByeByeLINQToSQL.csproj", "{E558987B-A643-4CDA-BE5F-89F5C55A0A32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E558987B-A643-4CDA-BE5F-89F5C55A0A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E558987B-A643-4CDA-BE5F-89F5C55A0A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E558987B-A643-4CDA-BE5F-89F5C55A0A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E558987B-A643-4CDA-BE5F-89F5C55A0A32}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF533D3C-E70F-4FC0-8D4F-DDBA03493C21}
+	EndGlobalSection
+EndGlobal
