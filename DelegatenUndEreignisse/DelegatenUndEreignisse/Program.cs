@@ -53,6 +53,7 @@ namespace DelegatenUndEreignisse
 
             //b1.ClickEvent += ButtonSpeichern_Click;
             //b1.ClickEvent += Logger;
+            //b1.ClickEvent += (sender,e) => Console.WriteLine("LOG");
 
             //b1.Klick();
             //b1.Klick();
@@ -67,9 +68,40 @@ namespace DelegatenUndEreignisse
             //// b1.ClickEvent.Invoke(null,null);        // Ereigniss extra Aufrufen -> verboten 
             #endregion
 
+
+            // Anonyme Methoden:
+
+            Func<int, int, int> rechnung = Add;
+            Func<int, int, int> anonymeFunktion = (z1,z2) =>
+              {
+                  return z1 + z2;
+              };
+
+            Action mitKlammer = () =>
+            {
+                Console.WriteLine("abcde");
+                Console.WriteLine("abcde");
+                Console.WriteLine("abcde");
+                Console.WriteLine("abcde");
+            };
+
+
+            Action ohneKlammer = () => Console.WriteLine("abcde");
+
+
+
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
         }
+
+        private static int Add(int z1, int z2)
+        {
+            return z1 + z2;
+        }
+        public static int Add2(int z1, int z2) => z1 + z2;
+        public static int Sub2(int z1, int z2) => z1 - z2;
+        public static int Mul2(int z1, int z2) => z1 * z2;
+
 
         private static void Logger(object sender, EventArgs e)
         {
@@ -99,10 +131,7 @@ namespace DelegatenUndEreignisse
             Console.WriteLine($"D{zahl}");
         }
 
-        private static int Add(int z1, int z2)
-        {
-            return z1 + z2;
-        }
+
         private static int Sub(int z1, int z2)
         {
             return z1 - z2;
