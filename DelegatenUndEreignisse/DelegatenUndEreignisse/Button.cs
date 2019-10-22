@@ -8,11 +8,27 @@ namespace DelegatenUndEreignisse
 {
     class Button
     {
-        public EventHandler ButtonClick { get; set; }
+        // Variante "Lang"
+        //private EventHandler buttonClick;
+        //public event EventHandler ClickEvent
+        //{
+        //    add
+        //    {
+        //        buttonClick += value;
+        //    }
+        //    remove
+        //    {
+        //        buttonClick -= value;
+        //    }
+        //}
+
+        // "AutoProperty"-Variante
+        public event EventHandler ClickEvent; // event-Schlüsselwort
+
         public void Klick()
         {
-            if(ButtonClick != null)
-                ButtonClick(this, EventArgs.Empty);
+            if(ClickEvent != null)
+                ClickEvent(this, EventArgs.Empty);
         }
     }
 }

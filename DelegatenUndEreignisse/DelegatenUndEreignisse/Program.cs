@@ -48,19 +48,24 @@ namespace DelegatenUndEreignisse
             //EventHandler handler = ButtonSpeichern_Click; 
             #endregion
 
-            // Anwendungsfall:
+            #region Anwendungsfall:
+            //Button b1 = new Button();
 
-            Button b1 = new Button();
+            //b1.ClickEvent += ButtonSpeichern_Click;
+            //b1.ClickEvent += Logger;
 
-            b1.ButtonClick += ButtonSpeichern_Click;
-            b1.ButtonClick += Logger;
+            //b1.Klick();
+            //b1.Klick();
 
-            b1.Klick();
-            b1.Klick();
-            b1.Klick();
-            b1.ButtonClick -= Logger;
-            b1.Klick();
-            b1.Klick();
+            //// b1.ClickEvent = null;          // absolut verboten !
+
+            //b1.Klick();
+            //b1.ClickEvent -= Logger;
+            //b1.Klick();
+            //b1.Klick();
+
+            //// b1.ClickEvent.Invoke(null,null);        // Ereigniss extra Aufrufen -> verboten 
+            #endregion
 
             Console.WriteLine("---ENDE---");
             Console.ReadKey();
