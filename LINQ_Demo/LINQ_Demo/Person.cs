@@ -13,4 +13,11 @@ namespace LINQ_Demo
         public byte Alter { get; set; }
         public decimal Kontostand { get; set; }
     }
+
+    class Buch
+    {
+        public string[] Author { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+    }
 }
