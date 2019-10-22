@@ -24,5 +24,20 @@ namespace ByeByeLINQToSQL
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var context = new Linq2SQLClassesDataContext();
+
+            myDataGrid.ItemsSource = context.Employees.Where(x => x.EmployeeID < 100)
+                                                      .OrderBy(x => x.Country)
+                                                      .ToArray();
+
+            Employee emp = new Employee();
+            context.Employees.InsertOnSubmit(emp);
+
+
+            context.SubmitChanges();
+        }
     }
 }
