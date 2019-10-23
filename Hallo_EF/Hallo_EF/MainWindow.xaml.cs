@@ -51,17 +51,31 @@ namespace Hallo_EF
 
         private void Löschen_Click(object sender, RoutedEventArgs e)
         {
-
+            int id = ((Person)myDataGrid.SelectedItem).Id;
+            var loadedItem = context.PersonSet.Find(id); // Ist es noch in der DB vorhanden
+            if (loadedItem != null)
+                context.PersonSet.Remove(loadedItem);
+            
+            // ToDo: Redraw DataGrid -> Laden() aufrufen
+            Speichern_Click(sender, e);
+            Laden_Click(sender, e);
         }
 
         private void Neu_Click(object sender, RoutedEventArgs e)
         {
-
+            // Fassung ohne Changetracker
+            Person p1 = new Person { Vorname = "Max", Nachname = "Mustermann" };
+            context.PersonSet.Add(p1);
+            
+            // Fassung mit Changetracker
+            Person p2 = context.PersonSet.Create();
         }
 
         private void Speichern_Click(object sender, RoutedEventArgs e)
         {
+            // context.ChangeTracker.DetectChanges(); // Rollback
 
+            context.SaveChanges(); // Änderungen Commiten
         }
 
         private void Laden_Click(object sender, RoutedEventArgs e)
