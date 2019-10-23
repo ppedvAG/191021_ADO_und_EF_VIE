@@ -67,6 +67,24 @@
     <Compile Include="Abteilung.cs">
       <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Customers.cs">
+      <DependentUpon>DatabaseFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseFirst_Demo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseFirst_Demo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseFirst_Demo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseFirst_Demo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatabaseFirst_Demo.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Kunde.cs">
       <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
     </Compile>
@@ -77,6 +95,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Orders.cs">
+      <DependentUpon>DatabaseFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order_Details.cs">
+      <DependentUpon>DatabaseFirst_Demo.tt</DependentUpon>
     </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
@@ -129,6 +153,13 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelFirst_Demo.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <EntityDeploy Include="DatabaseFirst_Demo.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DatabaseFirst_Demo.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DatabaseFirst_Demo.edmx.diagram">
+      <DependentUpon>DatabaseFirst_Demo.edmx</DependentUpon>
+    </None>
     <None Include="ModelFirst_Demo.edmx.diagram">
       <DependentUpon>ModelFirst_Demo.edmx</DependentUpon>
     </None>
@@ -142,6 +173,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DatabaseFirst_Demo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseFirst_Demo.edmx</DependentUpon>
+      <LastGenOutput>DatabaseFirst_Demo.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DatabaseFirst_Demo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DatabaseFirst_Demo.edmx</DependentUpon>
+      <LastGenOutput>DatabaseFirst_Demo.cs</LastGenOutput>
+    </Content>
     <Content Include="ModelFirst_Demo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelFirst_Demo.Context.cs</LastGenOutput>
