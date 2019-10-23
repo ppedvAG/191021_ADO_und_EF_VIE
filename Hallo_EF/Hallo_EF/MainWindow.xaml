@@ -16,7 +16,20 @@
             <MenuItem Header="Demo Daten erstellen" Click="DemoDaten_Click"/>
         </Menu>
 
-        <DataGrid x:Name="myDataGrid"/>
+        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Vorname}"/>
+                <DataGridTextColumn Header="Beruf" Binding="{Binding Beruf}"/>
+                <DataGridTemplateColumn Header="Abteilung">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox ItemsSource="{Binding Abteilung}"
+                                     DisplayMemberPath="Bezeichnung"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </DockPanel>
 </Window>

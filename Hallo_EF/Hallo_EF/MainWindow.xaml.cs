@@ -34,16 +34,43 @@ namespace Hallo_EF
 
         private void DemoDaten_Click(object sender, RoutedEventArgs e)
         {
-            context.PersonSet.Add(new Person { Vorname = "Tom", Nachname = "Ate", Alter = 10, Kontostand = 100 });
-            context.PersonSet.Add(new Person { Vorname = "Anna", Nachname = "Nass", Alter = 20, Kontostand = 200 });
-            context.PersonSet.Add(new Person { Vorname = "Peter", Nachname = "Silie", Alter = 30, Kontostand = 3000 });
-            context.PersonSet.Add(new Person { Vorname = "Franz", Nachname = "Ose", Alter = 40, Kontostand = -400 });
-            context.PersonSet.Add(new Person { Vorname = "Martha", Nachname = "Pfahl", Alter = 50, Kontostand = 500000 });
-            context.PersonSet.Add(new Person { Vorname = "Klara", Nachname = "Fall", Alter = 60, Kontostand = 6666 });
-            context.PersonSet.Add(new Person { Vorname = "Albert", Nachname = "Tross", Alter = 70, Kontostand = 1234567 });
-            context.PersonSet.Add(new Person { Vorname = "Anna", Nachname = "Bolika", Alter = 80, Kontostand = 987653 });
-            context.PersonSet.Add(new Person { Vorname = "Bill", Nachname = "Dung", Alter = 90, Kontostand = 326423234235234 });
-            context.PersonSet.Add(new Person { Vorname = "Axel", Nachname = "Schweiß", Alter = 100, Kontostand = -12312313100 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Tom", Nachname = "Ate", Alter = 10, Kontostand = 100 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Anna", Nachname = "Nass", Alter = 20, Kontostand = 200 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Peter", Nachname = "Silie", Alter = 30, Kontostand = 3000 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Franz", Nachname = "Ose", Alter = 40, Kontostand = -400 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Martha", Nachname = "Pfahl", Alter = 50, Kontostand = 500000 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Klara", Nachname = "Fall", Alter = 60, Kontostand = 6666 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Albert", Nachname = "Tross", Alter = 70, Kontostand = 1234567 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Anna", Nachname = "Bolika", Alter = 80, Kontostand = 987653 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Bill", Nachname = "Dung", Alter = 90, Kontostand = 326423234235234 });
+            //context.PersonSet.Add(new Mitarbeiter { Vorname = "Axel", Nachname = "Schweiß", Alter = 100, Kontostand = -12312313100 });
+
+            Mitarbeiter d1 = new Mitarbeiter { Beruf="Genderbeauftragen", Vorname = "Peter", Nachname = "Silie", Alter = 30, Kontostand = 3000 };
+            Mitarbeiter d2 = new Mitarbeiter { Beruf = "Raumlüfter", Vorname = "Albert", Nachname = "Tross", Alter = 70, Kontostand = 1234567 };
+
+            Abteilung a1 = new Abteilung();
+            a1.Bezeichnung = "HR";
+            a1.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Textilveredler", Vorname = "Tom", Nachname = "Ate", Alter = 10, Kontostand = 100 });
+            a1.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Feel Good Manager", Vorname = "Anna", Nachname = "Nass", Alter = 20, Kontostand = 200 });
+            a1.Mitarbeiter.Add(d1);
+
+            Abteilung a2 = new Abteilung();
+            a2.Bezeichnung = "Finance";
+            a2.Mitarbeiter.Add(d1);
+            a2.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Controller", Vorname = "Martha", Nachname = "Pfahl", Alter = 50, Kontostand = 500000 });
+            a2.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Brieföffner", Vorname = "Klara", Nachname = "Fall", Alter = 60, Kontostand = 6666 });
+            a2.Mitarbeiter.Add(d2);
+
+            Abteilung a3 = new Abteilung();
+            a3.Bezeichnung = "IT";
+            a3.Mitarbeiter.Add(d2);
+            a3.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Programmierer", Vorname = "Anna", Nachname = "Bolika", Alter = 80, Kontostand = 987653 });
+            a3.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Datenbank-Admin", Vorname = "Bill", Nachname = "Dung", Alter = 90, Kontostand = 326423234235234 });
+            a3.Mitarbeiter.Add(new Mitarbeiter { Beruf = "Datenträger", Vorname = "Axel", Nachname = "Schweiß", Alter = 100, Kontostand = -12312313100 });
+
+            context.AbteilungSet.Add(a1);
+            context.AbteilungSet.Add(a2);
+            context.AbteilungSet.Add(a3);
 
             // Daten in der DB speichern:
             context.SaveChanges();
@@ -55,7 +82,7 @@ namespace Hallo_EF
             var loadedItem = context.PersonSet.Find(id); // Ist es noch in der DB vorhanden
             if (loadedItem != null)
                 context.PersonSet.Remove(loadedItem);
-            
+
             // ToDo: Redraw DataGrid -> Laden() aufrufen
             Speichern_Click(sender, e);
             Laden_Click(sender, e);
@@ -66,7 +93,7 @@ namespace Hallo_EF
             // Fassung ohne Changetracker
             Person p1 = new Person { Vorname = "Max", Nachname = "Mustermann" };
             context.PersonSet.Add(p1);
-            
+
             // Fassung mit Changetracker
             Person p2 = context.PersonSet.Create();
         }
@@ -86,7 +113,8 @@ namespace Hallo_EF
             var query = context.PersonSet;
 
             MessageBox.Show(query.ToString());
-            myDataGrid.ItemsSource = query.ToArray(); // Befehl ausführen
+            var result =  query.ToArray(); // Befehl ausführen
+            myDataGrid.ItemsSource = result;
         }
 
 
