@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hallo_CodeFirst
 {
+    // [Table("Bücher", Schema = "buc")]
     public class Buch : Entity
     {
         public string Titel { get; set; }

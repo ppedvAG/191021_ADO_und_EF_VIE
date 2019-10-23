@@ -27,10 +27,10 @@ namespace Hallo_CodeFirst
 
             // Annotations [Table("Tabellenname")] wieder überschreiben !
 
-            modelBuilder.Entity<Buch>().ToTable("Bücher");
-            modelBuilder.Entity<Buch>().Property(x => x.Preis)
-                                       .HasColumnName("kaChing")
-                                       .HasColumnType("money");
+            // modelBuilder.Entity<Buch>().ToTable("Bücher","buchschema");
+            //modelBuilder.Entity<Buch>().Property(x => x.Preis)
+            //                           .HasColumnName("kaChing")
+            //                           .HasColumnType("money");
         }
 
         public DbSet<Buch> Buch { get; set; }

@@ -6,6 +6,7 @@ namespace Hallo_CodeFirst
 {
     // Data Annotations
     // [Table("AlleBuchgeschäfte")]
+    // [Table("Buchgeschäft",Schema ="ges")]
     public class Buchgeschäft : Entity
     {
         // [Column("Buchgeschäftsname")]
