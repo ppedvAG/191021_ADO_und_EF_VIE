@@ -4,7 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cba9b444c2fb40ecb0515b22ddf0204c" Name="Diagram1" />
+      <Diagram DiagramId="cba9b444c2fb40ecb0515b22ddf0204c" Name="Diagram1" >
+        <EntityTypeShape EntityType="ModelFirst_Demo.Person" Width="1.5" PointX="2.75" PointY="1" FillColor="MediumBlue" />
+        <EntityTypeShape EntityType="ModelFirst_Demo.Kunde" Width="1.5" PointX="2.75" PointY="3.5" />
+        <InheritanceConnector EntityType="ModelFirst_Demo.Kunde" />
+        <EntityTypeShape EntityType="ModelFirst_Demo.Mitarbeiter" Width="1.5" PointX="5.375" PointY="3.5" />
+        <InheritanceConnector EntityType="ModelFirst_Demo.Mitarbeiter" />
+        <AssociationConnector Association="ModelFirst_Demo.KundeMitarbeiter" />
+        <EntityTypeShape EntityType="ModelFirst_Demo.Abteilung" Width="1.5" PointX="7" PointY="1" />
+        <AssociationConnector Association="ModelFirst_Demo.MitarbeiterAbteilung" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

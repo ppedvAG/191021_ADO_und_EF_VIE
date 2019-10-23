@@ -64,6 +64,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abteilung.cs">
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kunde.cs">
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Mitarbeiter.cs">
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelFirst_Demo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Schuhgröße.cs">
+      <DependentUpon>ModelFirst_Demo.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +98,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ModelFirst_Demo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelFirst_Demo.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelFirst_Demo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +140,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelFirst_Demo.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelFirst_Demo.Context.cs</LastGenOutput>
+      <DependentUpon>ModelFirst_Demo.edmx</DependentUpon>
+    </Content>
+    <Content Include="ModelFirst_Demo.edmx.sql" />
+    <Content Include="ModelFirst_Demo.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelFirst_Demo.cs</LastGenOutput>
+      <DependentUpon>ModelFirst_Demo.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
