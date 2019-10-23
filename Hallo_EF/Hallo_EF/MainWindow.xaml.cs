@@ -110,6 +110,8 @@ namespace Hallo_EF
             //var query = context.PersonSet.Where(x => x.Kontostand > 0 && x.Vorname.StartsWith("A"))
             //                             .OrderByDescending(x => x.Alter);
 
+            // Bei großen Listen: Stück für Stück nachladen
+            // .Skip(meineListe.Count).Take(100); // <-- meineListe ist quasi der Cache
             var query = context.PersonSet;
 
             MessageBox.Show(query.ToString());

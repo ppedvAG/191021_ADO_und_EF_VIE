@@ -1,0 +1,2 @@
+Notifications bei Datenänderungen in der DB mit EF:
+https://code.msdn.microsoft.com/How-to-use-SqlDependency-5c0da0b3
