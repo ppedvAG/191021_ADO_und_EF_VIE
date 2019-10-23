@@ -119,6 +119,20 @@ namespace Hallo_EF
             myDataGrid.ItemsSource = result;
         }
 
+        private void myDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            int id = 1; // Ohne laden: 1
+            if(myDataGrid.ItemsSource != null) // Mit laden: gewähltes Element
+                id = ((Person)myDataGrid.SelectedItem).Id;
 
+            // var loadedItem = context.PersonSet.Find(id);             // Nimmt, wenn vorhanden, aus dem Cache
+             var loadedItem = context.PersonSet.AsNoTracking() /// <-- KEIN CACHE !
+                                               .First(x => x.Id == id);  // Macht mit dem Find somit 100%ig eine Abfrage an die DB
+
+            MessageBox.Show($"{loadedItem.Vorname} {loadedItem.Nachname}");
+
+            // Gewählter Datensatz im Datagrid anzeigen:
+            myDataGrid.ItemsSource = new Person[] { loadedItem };
+        }
     }
 }

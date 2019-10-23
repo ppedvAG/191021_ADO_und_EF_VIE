@@ -16,7 +16,7 @@
             <MenuItem Header="Demo Daten erstellen" Click="DemoDaten_Click"/>
         </Menu>
 
-        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="myDataGrid" AutoGenerateColumns="False" MouseDoubleClick="myDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Vorname}"/>
                 <DataGridTextColumn Header="Beruf" Binding="{Binding Beruf}"/>
