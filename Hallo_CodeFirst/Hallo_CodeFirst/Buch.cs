@@ -10,7 +10,7 @@ namespace Hallo_CodeFirst
         public string Autor { get; set; }
         public int Seiten { get; set; }
         public decimal Preis { get; set; }
-        public decimal Preisbindung { get; set; }
+        // public decimal Preisbindung { get; set; }
 
         public virtual HashSet<Buchgeschäft> Geschäfte { get; set; } = new HashSet<Buchgeschäft>();
     }

@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201910231358101_Preisbindung.Designer.cs">
       <DependentUpon>201910231358101_Preisbindung.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910231411045_Namensänderug.cs" />
+    <Compile Include="Migrations\201910231411045_Namensänderug.Designer.cs">
+      <DependentUpon>201910231411045_Namensänderug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -114,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910231358101_Preisbindung.resx">
       <DependentUpon>201910231358101_Preisbindung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910231411045_Namensänderug.resx">
+      <DependentUpon>201910231411045_Namensänderug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

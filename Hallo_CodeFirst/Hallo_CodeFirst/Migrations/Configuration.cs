@@ -9,7 +9,8 @@ namespace Hallo_CodeFirst.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            // AutomaticMigrationDataLossAllowed = true; // <- Führt zu datenverlust bei DropColumn/Table etc...
+            AutomaticMigrationsEnabled = true; // Holzhammer -> Bei jeder Modeländerung wird ein neuer Migrationspunkt erstellt
             ContextKey = "Hallo_CodeFirst.EFContext";
         }
 

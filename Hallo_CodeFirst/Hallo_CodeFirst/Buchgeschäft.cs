@@ -13,6 +13,8 @@ namespace Hallo_CodeFirst
         // [MaxLength(15)]
         public string Name { get; set; }
         public string Adresse { get; set; }
+        public string Inhaber { get; set; }
+        public decimal InhaberGehalt { get; set; }
 
         public virtual HashSet<Buch> Bücher { get; set; } = new HashSet<Buch>();
     }

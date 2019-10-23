@@ -27,7 +27,7 @@ namespace Hallo_CodeFirst
             // update-database  // -TargetMigration XYZ
 
             // Der erste, der das Programm startet, updated die DB ;) 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFContext,Migrations.Configuration>());
+            // Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFContext,Migrations.Configuration>());
         }
 
         // Koniguration:
@@ -37,10 +37,10 @@ namespace Hallo_CodeFirst
 
             // Annotations [Table("Tabellenname")] wieder überschreiben !
 
-            modelBuilder.Entity<Buch>().ToTable("Bücher", "bu");
+            modelBuilder.Entity<Buch>().ToTable("Bücherliste", "bu");
             modelBuilder.Entity<Buch>().Property(x => x.Preis)
-                                      .HasColumnName("kaChing")
-                                      .HasColumnType("money");
+                                      .HasColumnName("Verkaufspreis")
+                                      .HasColumnType("decimal");
         }
 
         public DbSet<Buch> Buch { get; set; }
