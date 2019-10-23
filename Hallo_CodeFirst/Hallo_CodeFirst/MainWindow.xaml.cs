@@ -24,10 +24,15 @@ namespace Hallo_CodeFirst
         {
             InitializeComponent();
         }
+        EFContext context;
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            context = new EFContext();
+        }
 
         private void Laden_Click(object sender, RoutedEventArgs e)
         {
-
+            myDataGrid.ItemsSource = context.Buch.ToList();
         }
 
         private void DemoDaten_Click(object sender, RoutedEventArgs e)
@@ -35,9 +40,6 @@ namespace Hallo_CodeFirst
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
 
-        }
     }
 }
