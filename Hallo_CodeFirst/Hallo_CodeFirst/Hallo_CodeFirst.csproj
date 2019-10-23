@@ -80,6 +80,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201910231344430_InitialCreate.cs" />
+    <Compile Include="Migrations\201910231344430_InitialCreate.Designer.cs">
+      <DependentUpon>201910231344430_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910231353518_SchemaFürBuch.cs" />
+    <Compile Include="Migrations\201910231353518_SchemaFürBuch.Designer.cs">
+      <DependentUpon>201910231353518_SchemaFürBuch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910231358101_Preisbindung.cs" />
+    <Compile Include="Migrations\201910231358101_Preisbindung.Designer.cs">
+      <DependentUpon>201910231358101_Preisbindung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +106,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201910231344430_InitialCreate.resx">
+      <DependentUpon>201910231344430_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910231353518_SchemaFürBuch.resx">
+      <DependentUpon>201910231353518_SchemaFürBuch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910231358101_Preisbindung.resx">
+      <DependentUpon>201910231358101_Preisbindung.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

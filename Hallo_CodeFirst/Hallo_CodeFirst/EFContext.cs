@@ -17,7 +17,17 @@ namespace Hallo_CodeFirst
         {
             // Für Testzwecke:
             // Database.SetInitializer(new DropCreateDatabaseAlways<EFContext>()); // <--- Bei jedem Programmstart
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFContext>());
+            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EFContext>());
+
+
+            // Code-First-Migration:
+
+            // enable-migration  // <---- bei Programmstart
+            // add-migration // <--- schönen namen aussuchen
+            // update-database  // -TargetMigration XYZ
+
+            // Der erste, der das Programm startet, updated die DB ;) 
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFContext,Migrations.Configuration>());
         }
 
         // Koniguration:
@@ -27,10 +37,10 @@ namespace Hallo_CodeFirst
 
             // Annotations [Table("Tabellenname")] wieder überschreiben !
 
-            // modelBuilder.Entity<Buch>().ToTable("Bücher","buchschema");
-            //modelBuilder.Entity<Buch>().Property(x => x.Preis)
-            //                           .HasColumnName("kaChing")
-            //                           .HasColumnType("money");
+            modelBuilder.Entity<Buch>().ToTable("Bücher", "bu");
+            modelBuilder.Entity<Buch>().Property(x => x.Preis)
+                                      .HasColumnName("kaChing")
+                                      .HasColumnType("money");
         }
 
         public DbSet<Buch> Buch { get; set; }
