@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hallo_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Erstes Arbeiten mit Entity Framework" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Laden" Click="Laden_Click"/>
+            <MenuItem Header="Speichern" Click="Speichern_Click"/>
+            <MenuItem Header="Neu" Click="Neu_Click" />
+            <MenuItem Header="Löschen" Click="Löschen_Click"/>
+            <MenuItem Header="Demo Daten erstellen" Click="DemoDaten_Click"/>
+        </Menu>
+
+        <DataGrid x:Name="myDataGrid"/>
+
+    </DockPanel>
 </Window>
