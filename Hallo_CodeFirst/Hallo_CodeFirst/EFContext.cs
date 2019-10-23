@@ -24,6 +24,13 @@ namespace Hallo_CodeFirst
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            // Annotations [Table("Tabellenname")] wieder überschreiben !
+
+            modelBuilder.Entity<Buch>().ToTable("Bücher");
+            modelBuilder.Entity<Buch>().Property(x => x.Preis)
+                                       .HasColumnName("kaChing")
+                                       .HasColumnType("money");
         }
 
         public DbSet<Buch> Buch { get; set; }
