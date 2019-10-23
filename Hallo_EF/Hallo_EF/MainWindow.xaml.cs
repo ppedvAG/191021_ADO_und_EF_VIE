@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,7 @@ namespace Hallo_EF
             context = new ModelFirst_Container();
         }
         private ModelFirst_Container context;
+        private List<Person> dataGridList;
 
 
         private void DemoDaten_Click(object sender, RoutedEventArgs e)
@@ -116,7 +118,8 @@ namespace Hallo_EF
 
             MessageBox.Show(query.ToString());
             var result =  query.ToArray(); // Befehl ausführen
-            myDataGrid.ItemsSource = result;
+            dataGridList = new List<Person>(result);
+            myDataGrid.ItemsSource = dataGridList.ToArray(); // Arbeitet mit Kopie
         }
 
         private void myDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -131,8 +134,17 @@ namespace Hallo_EF
 
             MessageBox.Show($"{loadedItem.Vorname} {loadedItem.Nachname}");
 
-            // Gewählter Datensatz im Datagrid anzeigen:
-            myDataGrid.ItemsSource = new Person[] { loadedItem };
+
+            // Änderung im DataGrid anzeigen;
+            int geändert_Index = dataGridList.IndexOf(dataGridList.First(x => x.Id == loadedItem.Id));
+
+
+            // Hack
+            myDataGrid.ItemsSource = null;
+            dataGridList[geändert_Index] = loadedItem;
+            myDataGrid.ItemsSource = dataGridList.ToArray();
+
+            //ToDo: Besser/Performanter machen, damit die Daten nicht doppelt im RAM sind
         }
     }
 }

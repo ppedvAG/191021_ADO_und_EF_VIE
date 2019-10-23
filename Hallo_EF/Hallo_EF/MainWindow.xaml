@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Hallo_EF"
         mc:Ignorable="d"
         Title="Erstes Arbeiten mit Entity Framework" Height="450" Width="800"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Laden" Click="Laden_Click"/>
