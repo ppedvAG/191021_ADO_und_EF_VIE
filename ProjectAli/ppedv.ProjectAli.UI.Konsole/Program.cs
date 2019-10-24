@@ -1,4 +1,6 @@
 ﻿using ppedv.ProjectAli.Data.EF;
+using ppedv.ProjectAli.Domain;
+using ppedv.ProjectAli.Logic;
 using System;
 using System.Linq;
 
@@ -10,13 +12,20 @@ namespace ppedv.ProjectAli.UI.Konsole
         {
             // Variante "ohne Tests"
 
-            EFContext context = new EFContext();
-            context.Database.EnsureCreated();
+            Core core = new Core(new EFRepository());
+            core.GenerateDemoData();
 
-            var result = context.Flight.ToList();
+            // var result = .....
 
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            var allAircrafts = core.GetAllAircraft();
+
+            AircraftType airbus = allAircrafts.First(x => x.Model == "Airbus 380");
+
+            var allAirportsForAirbus = core.GetAllAirportsFor(airbus);
+            foreach (var item in allAirportsForAirbus)
+            {
+                Console.WriteLine($"{item.Iata} supports Airbus 380");
+            }
         }
     }
 }

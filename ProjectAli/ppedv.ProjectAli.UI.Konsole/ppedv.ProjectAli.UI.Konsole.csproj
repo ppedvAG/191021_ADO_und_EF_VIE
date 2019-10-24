@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ppedv.ProjectAli.Data.EF\ppedv.ProjectAli.Data.EF.csproj" />
     <ProjectReference Include="..\ppedv.ProjectAli.Domain\ppedv.ProjectAli.Domain.csproj" />
+    <ProjectReference Include="..\ppedv.ProjectAli.Logic\ppedv.ProjectAli.Logic.csproj" />
   </ItemGroup>
 
 </Project>
