@@ -11,6 +11,8 @@ namespace ppedv.ProjectAli.Domain
         public double Longitude { get; set; }
         public double Latitude { get; set; }
         public double Elevation { get; set; }
+
+        public WTC SupportedWTC { get; set; }
     }
 
 }
