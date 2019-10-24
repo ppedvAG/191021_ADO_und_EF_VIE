@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Data.EF", "ppedv.ProjectAli.Data.EF\ppedv.ProjectAli.Data.EF.csproj", "{DCFA8901-3040-4ADE-A852-2C6C80ADB315}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.UI.Konsole", "ppedv.ProjectAli.UI.Konsole\ppedv.ProjectAli.UI.Konsole.csproj", "{1D0A44DD-7872-413C-A402-2831FD90F5C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{DCFA8901-3040-4ADE-A852-2C6C80ADB315}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCFA8901-3040-4ADE-A852-2C6C80ADB315}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCFA8901-3040-4ADE-A852-2C6C80ADB315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0A44DD-7872-413C-A402-2831FD90F5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0A44DD-7872-413C-A402-2831FD90F5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0A44DD-7872-413C-A402-2831FD90F5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0A44DD-7872-413C-A402-2831FD90F5C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D0FF3436-923D-4CF0-AAF5-4E1839A4A39C} = {C3A8B60D-9058-4657-BC80-542D9ABA4BF8}
 		{DCFA8901-3040-4ADE-A852-2C6C80ADB315} = {BF0B4A8E-D2C6-4886-B7D0-2273955703F9}
+		{1D0A44DD-7872-413C-A402-2831FD90F5C9} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2E7FC3A-8CE7-4F93-9894-491B8E37958C}
