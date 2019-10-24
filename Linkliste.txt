@@ -6,3 +6,4 @@ https://github.com/AutoFixture/AutoFixture
 https://github.com/AutoFixture/AutoFixture/wiki/Cheat-Sheet
 https://fluentassertions.com/
 https://fluentassertions.com/introduction
+https://github.com/Moq/moq4/wiki/Quickstart

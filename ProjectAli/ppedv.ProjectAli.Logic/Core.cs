@@ -90,14 +90,14 @@ namespace ppedv.ProjectAli.Logic
             repo.Add(f2);
             repo.Add(f3);
 
-            repo.Save()
+            repo.Save();
         }
 
         public Airport[] GetAllDestinationsFrom(Airport departureAirport)
         {
             // .... was kann man von z.B. Wien alles anfliegen ?
 
-            return repo.Query<Flight>().Where(x => x.Destination.LocInt == departureAirport.LocInt)
+            return repo.Query<Flight>().Where(x => x.Departure.LocInt == departureAirport.LocInt)
                                        .Select(x => x.Destination)
                                        .ToArray();
 
