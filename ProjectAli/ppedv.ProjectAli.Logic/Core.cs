@@ -12,15 +12,15 @@ namespace ppedv.ProjectAli.Logic
     {
         public Core(IRepository repo)
         {
-            this.repo = repo;
+            this.Repository = repo;
         }
 
-        private IRepository repo;
+        public IRepository Repository { get; private set; }
 
 
         public void GenerateDemoData()
         {
-            if (repo.Query<AircraftType>().Count() > 0)
+            if (Repository.Query<AircraftType>().Count() > 0)
                 return; // Mach nix
 
             AircraftType at1 = new AircraftType();
@@ -91,31 +91,35 @@ namespace ppedv.ProjectAli.Logic
             f3.AircraftID = "BAW987";
             f3.AircraftType = at3;
 
-            repo.Add(f1);
-            repo.Add(f2);
-            repo.Add(f3);
+            Repository.Add(f1);
+            Repository.Add(f2);
+            Repository.Add(f3);
 
-            repo.Save();
+            Repository.Save();
         }
 
         public Airport[] GetAllDestinationsFrom(Airport departureAirport)
         {
             // .... was kann man von z.B. Wien alles anfliegen ?
 
-            return repo.Query<Flight>().Where(x => x.Departure.LocInt == departureAirport.LocInt)
+            return Repository.Query<Flight>().Where(x => x.Departure.LocInt == departureAirport.LocInt)
                                        .Select(x => x.Destination)
                                        .ToArray();
         }
 
         public Airport[] GetAllAirportsFor(AircraftType aircraft)
         {
-            return repo.Query<Airport>().Where(x => x.SupportedWTC.HasFlag(aircraft.WTC))
+            return Repository.Query<Airport>().Where(x => x.SupportedWTC.HasFlag(aircraft.WTC))
                                         .ToArray();
         }
 
         public AircraftType[] GetAllAircraft()
         {
-            return repo.GetAll<AircraftType>().ToArray();
+            return Repository.GetAll<AircraftType>().ToArray();
+        }
+        public Airport[] GetAllAirports()
+        {
+            return Repository.GetAll<Airport>().ToArray();
         }
     }
 }

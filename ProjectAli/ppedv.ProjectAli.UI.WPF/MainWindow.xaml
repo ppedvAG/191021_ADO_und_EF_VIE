@@ -9,11 +9,22 @@
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Lade alle Flugzeuge" Click="LadeFlugzeuge_Click"/>
-            <MenuItem Header="Lade alle Flughäfen" Click="LadeFlughäfen_Click"/>
+            <MenuItem Header="Flugzeuge">
+                <MenuItem Header="Lade alle Flugzeuge" Click="LadeFlugzeuge_Click"/>
+                <MenuItem Header="Lösche selektiertes Flugzeug" Click="LöscheFlugzeug_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Flughäfen">
+                <MenuItem Header="Lade alle Flughäfen" Click="LadeFlughäfen_Click"/>
+                <MenuItem Header="Lösche selektierten Flughafen"/>
+            </MenuItem>
+            
             <TextBlock Text="Lade verfügbare Flughäfen für:" />
-            <ComboBox Width="150" SelectionChanged="LadeFlughäfenFürSelektiertesFlugzeug"/>
+            <ComboBox x:Name="comboBoxFlugzeug" DisplayMemberPath="Code" Width="150" SelectionChanged="LadeFlughäfenFürSelektiertesFlugzeug"/>
         </Menu>
-        <DataGrid x:Name="myDataGrid"/>
+        <DataGrid x:Name="myDataGrid" CanUserAddRows="True" AutoGenerateColumns="True"
+                  AddingNewItem="myDataGrid_AddingNewItem"
+                  RowEditEnding="myDataGrid_RowEditEnding">
+        </DataGrid>
     </DockPanel>
 </Window>

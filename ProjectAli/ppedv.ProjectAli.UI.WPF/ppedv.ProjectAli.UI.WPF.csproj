@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ppedv.ProjectAli.Data.EF\ppedv.ProjectAli.Data.EF.csproj" />
+    <ProjectReference Include="..\ppedv.ProjectAli.Logic\ppedv.ProjectAli.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
