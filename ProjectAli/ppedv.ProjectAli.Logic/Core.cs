@@ -48,6 +48,7 @@ namespace ppedv.ProjectAli.Logic
             a1.Latitude = 48.110298156738;
             a1.Longitude = 16.569700241089;
             a1.Elevation = 600;
+            a1.SupportedWTC = WTC.L | WTC.M | WTC.H | WTC.X;
 
             Airport a2 = new Airport();
             a2.LocInt = "EGLL";
@@ -56,6 +57,8 @@ namespace ppedv.ProjectAli.Logic
             a2.Latitude = 51.4706;
             a2.Longitude = -0.461941;
             a2.Elevation = 83;
+            a2.SupportedWTC = WTC.L | WTC.M | WTC.H | WTC.X;
+
 
             Airport a3 = new Airport();
             a3.LocInt = "LIMF";
@@ -64,6 +67,8 @@ namespace ppedv.ProjectAli.Logic
             a3.Latitude = 45.200802;
             a3.Longitude = 7.46963;
             a3.Elevation = 989;
+            a3.SupportedWTC = WTC.L | WTC.M | WTC.H;
+
 
             Flight f1 = new Flight();
             f1.Departure = a1;
@@ -100,7 +105,17 @@ namespace ppedv.ProjectAli.Logic
             return repo.Query<Flight>().Where(x => x.Departure.LocInt == departureAirport.LocInt)
                                        .Select(x => x.Destination)
                                        .ToArray();
+        }
 
+        public Airport[] GetAllAirportsFor(AircraftType aircraft)
+        {
+            return repo.Query<Airport>().Where(x => x.SupportedWTC.HasFlag(aircraft.WTC))
+                                        .ToArray();
+        }
+
+        public AircraftType[] GetAllAircraft()
+        {
+            return repo.GetAll<AircraftType>().ToArray();
         }
     }
 }
