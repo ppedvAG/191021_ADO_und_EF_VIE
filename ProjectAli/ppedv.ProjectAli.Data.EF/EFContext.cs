@@ -19,7 +19,11 @@ namespace ppedv.ProjectAli.Data.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+#if DEBUG
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectAli_Test;Trusted_Connection=true;");
+#else
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjectAli_Produktiv;Trusted_Connection=true;");
+#endif
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

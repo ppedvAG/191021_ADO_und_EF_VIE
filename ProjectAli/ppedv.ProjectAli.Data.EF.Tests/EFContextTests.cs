@@ -20,6 +20,8 @@ namespace ppedv.ProjectAli.Data.EF.Tests
             // Testfälle prüfen
             // Assert.IsNotNull(context);
             context.Should().NotBeNull();
+
+            context.Database.EnsureCreated();
         }
 
         // testm + TAB + TAB
