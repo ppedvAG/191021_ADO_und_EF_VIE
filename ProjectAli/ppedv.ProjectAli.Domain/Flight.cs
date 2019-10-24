@@ -2,7 +2,7 @@
 
 namespace ppedv.ProjectAli.Domain
 {
-    public class Flight
+    public class Flight : Entity
     {
         public virtual Airport Departure { get; set; }
         public virtual Airport Destination { get; set; }

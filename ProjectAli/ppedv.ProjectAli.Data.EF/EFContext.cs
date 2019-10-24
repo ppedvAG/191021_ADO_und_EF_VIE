@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ppedv.ProjectAli.Domain;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ppedv.ProjectAli.Data.EF
     {
         // NuGet:
         // Microsoft.EntityFrameworkCore
-        // Microsoft.EntityFrameworkCore.SQLServer
+        // Microsoft.EntityFrameworkCore.SQLServer  <--- Provider !!!! 
 
         public DbSet<Airport> Airport { get; set; }
         public DbSet<Flight> Flight { get; set; }
@@ -24,6 +25,17 @@ namespace ppedv.ProjectAli.Data.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Konfiguration
+            // Properties ignorieren:
+            // '[NotMapped]' Attribut über dem Property oder 'EntityTypeBuilder.Ignore' in 'OnModelCreating'.
+            
+            // Schritte für CodeFirst - Migration:
+            // 1) NuGetPackage Microsoft.EntityFrameworkCore.Tools installieren
+            // 2) 'AddMigration InitalCreate' ausführen
+
+            //  -----  Falls das EF-Core Projekt eine DLL ist (z.B. .NET Standard:) ----
+            // 3) Ein .NET Core Projekt (z.B. .NET Core Konsole) hinzufügen
+            // 4) Nuget EFCore im Konsolenprojekt installieren + Alle Referenzen auf die DLLS hinzufügen (Domain, Data.EF)
+            // 5) Startprojekt in VS: Konsolenprogramm UND PackageManagerConsole-DefaultProjekt (Dropdown-Box): Data.EF
 
             modelBuilder.Entity<Airport>().Property(x => x.LocInt)
                                           .HasMaxLength(4)
@@ -35,20 +47,10 @@ namespace ppedv.ProjectAli.Data.EF
             modelBuilder.Entity<Airport>().Property(x => x.Iata)
                                           .HasMaxLength(3)
                                           .IsFixedLength();
-            modelBuilder.Entity<Airport>().Property(x => x.Location)
-                                          .IsRequired();
-
-            modelBuilder.Entity<Flight>().Property(x => x.Departure)
-                                         .IsRequired();
-            modelBuilder.Entity<Flight>().Property(x => x.Destination)
-                                         .IsRequired();
-            modelBuilder.Entity<Flight>().Property(x => x.Duration)
-                                         .IsRequired();
             modelBuilder.Entity<Flight>().Property(x => x.AircraftID)
                                          .HasMaxLength(7)
                                          .IsRequired();
-            modelBuilder.Entity<Flight>().Property(x => x.AircraftType)
-                                         .IsRequired();
+
 
             modelBuilder.Entity<AircraftType>().Property(x => x.Code)
                                                .HasMaxLength(4)
