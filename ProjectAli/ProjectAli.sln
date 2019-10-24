@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.UI.Konsole
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Data.EF.Tests", "ppedv.ProjectAli.Data.EF.Tests\ppedv.ProjectAli.Data.EF.Tests.csproj", "{789B089F-1408-43F8-9BAD-5A03F892C6FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Logic", "ppedv.ProjectAli.Logic\ppedv.ProjectAli.Logic.csproj", "{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{789B089F-1408-43F8-9BAD-5A03F892C6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{789B089F-1408-43F8-9BAD-5A03F892C6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{789B089F-1408-43F8-9BAD-5A03F892C6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{DCFA8901-3040-4ADE-A852-2C6C80ADB315} = {BF0B4A8E-D2C6-4886-B7D0-2273955703F9}
 		{1D0A44DD-7872-413C-A402-2831FD90F5C9} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
 		{789B089F-1408-43F8-9BAD-5A03F892C6FE} = {BF0B4A8E-D2C6-4886-B7D0-2273955703F9}
+		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C} = {ED1FB72D-7FA8-472D-891B-BCDAF6BF9518}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2E7FC3A-8CE7-4F93-9894-491B8E37958C}
