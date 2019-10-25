@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ppedv.ProjectAli.Domain.Airport>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocInt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Decode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Iata)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Elevation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupportedWTC)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocInt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Decode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Elevation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupportedWTC)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID  }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
