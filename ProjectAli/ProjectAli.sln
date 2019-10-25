@@ -11,19 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{ED1FB72D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{26BE09EE-3B77-4C27-A2A8-3BC94E50003B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Domain", "ppedv.ProjectAli.Domain\ppedv.ProjectAli.Domain.csproj", "{D0FF3436-923D-4CF0-AAF5-4E1839A4A39C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Domain", "ppedv.ProjectAli.Domain\ppedv.ProjectAli.Domain.csproj", "{D0FF3436-923D-4CF0-AAF5-4E1839A4A39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Data.EF", "ppedv.ProjectAli.Data.EF\ppedv.ProjectAli.Data.EF.csproj", "{DCFA8901-3040-4ADE-A852-2C6C80ADB315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Data.EF", "ppedv.ProjectAli.Data.EF\ppedv.ProjectAli.Data.EF.csproj", "{DCFA8901-3040-4ADE-A852-2C6C80ADB315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.UI.Konsole", "ppedv.ProjectAli.UI.Konsole\ppedv.ProjectAli.UI.Konsole.csproj", "{1D0A44DD-7872-413C-A402-2831FD90F5C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.UI.Konsole", "ppedv.ProjectAli.UI.Konsole\ppedv.ProjectAli.UI.Konsole.csproj", "{1D0A44DD-7872-413C-A402-2831FD90F5C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Data.EF.Tests", "ppedv.ProjectAli.Data.EF.Tests\ppedv.ProjectAli.Data.EF.Tests.csproj", "{789B089F-1408-43F8-9BAD-5A03F892C6FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Data.EF.Tests", "ppedv.ProjectAli.Data.EF.Tests\ppedv.ProjectAli.Data.EF.Tests.csproj", "{789B089F-1408-43F8-9BAD-5A03F892C6FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Logic", "ppedv.ProjectAli.Logic\ppedv.ProjectAli.Logic.csproj", "{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Logic", "ppedv.ProjectAli.Logic\ppedv.ProjectAli.Logic.csproj", "{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.Logic.Tests", "ppedv.ProjectAli.Logic.Tests\ppedv.ProjectAli.Logic.Tests.csproj", "{0E47523D-9F90-4B8C-9734-962AF29C3DC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Logic.Tests", "ppedv.ProjectAli.Logic.Tests\ppedv.ProjectAli.Logic.Tests.csproj", "{0E47523D-9F90-4B8C-9734-962AF29C3DC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.UI.WPF", "ppedv.ProjectAli.UI.WPF\ppedv.ProjectAli.UI.WPF.csproj", "{BF4C7098-7C8E-4459-B957-E42247BAA5B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.UI.WPF", "ppedv.ProjectAli.UI.WPF\ppedv.ProjectAli.UI.WPF.csproj", "{BF4C7098-7C8E-4459-B957-E42247BAA5B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFConcurrencyTest", "EFConcurrencyTest\EFConcurrencyTest.csproj", "{391DBDD5-602E-45BC-9DEC-64449843D412}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{BF4C7098-7C8E-4459-B957-E42247BAA5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4C7098-7C8E-4459-B957-E42247BAA5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4C7098-7C8E-4459-B957-E42247BAA5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{391DBDD5-602E-45BC-9DEC-64449843D412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391DBDD5-602E-45BC-9DEC-64449843D412}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391DBDD5-602E-45BC-9DEC-64449843D412}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391DBDD5-602E-45BC-9DEC-64449843D412}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{7BB1C52A-64B9-4394-85CC-5ADC01F3C01C} = {ED1FB72D-7FA8-472D-891B-BCDAF6BF9518}
 		{0E47523D-9F90-4B8C-9734-962AF29C3DC2} = {ED1FB72D-7FA8-472D-891B-BCDAF6BF9518}
 		{BF4C7098-7C8E-4459-B957-E42247BAA5B4} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
+		{391DBDD5-602E-45BC-9DEC-64449843D412} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2E7FC3A-8CE7-4F93-9894-491B8E37958C}

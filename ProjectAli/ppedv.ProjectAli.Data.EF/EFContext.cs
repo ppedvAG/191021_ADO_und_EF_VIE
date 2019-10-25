@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ppedv.ProjectAli.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -100,9 +101,56 @@ namespace ppedv.ProjectAli.Data.EF
             //    ((Entity)item.Entity).IsDeleted = true;
             //}
 
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                string message = $"In der Zwischenzeit wurde die Datenbank von jemand anderem verändert.{Environment.NewLine} Sollen die Änderungen überschrieben werden [UserWins]? Ansonsten [DBWins] ";
 
+                foreach (var item in ex.Entries)
+                {
+                    var proposedValues = item.CurrentValues;
+                    var databaseValues = item.GetDatabaseValues();
+                    message += $"{Environment.NewLine}{item.Entity.ToString()}"; // <------------
+                    foreach (var property in proposedValues.Properties)
+                    {
+                        var proposedValue = proposedValues[property];
+                        var databaseValue = databaseValues[property];
+                        message += $"{Environment.NewLine}Proposed:{proposedValue} \tDatabase:{databaseValue}";
+                    }
+                }
 
-            return base.SaveChanges();
+                MyConcurrencyException myEx = new MyConcurrencyException(message);
+                myEx.UserWins = () =>
+                {
+                    foreach (var item in ex.Entries)
+                    {
+                        // Refresh original values to bypass next concurrency check
+                        item.OriginalValues.SetValues(item.GetDatabaseValues());
+                    }
+                    SaveChanges();
+                };
+                myEx.DBWins = () =>
+                {
+                    foreach (var item in ex.Entries)
+                    {
+                        item.CurrentValues.SetValues(item.GetDatabaseValues());
+                        item.OriginalValues.SetValues(item.GetDatabaseValues());
+                        item.State = EntityState.Unchanged;
+                    }
+                    SaveChanges();
+                };
+
+                throw myEx;
+            }
+            catch (DbUpdateException ex)
+            {
+                // Ungültige Daten für die DB eingegeben
+                return base.SaveChanges();
+            }
         }
+        
     }
 }

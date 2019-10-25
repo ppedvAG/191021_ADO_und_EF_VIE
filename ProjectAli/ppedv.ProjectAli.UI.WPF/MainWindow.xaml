@@ -21,6 +21,7 @@
             
             <TextBlock Text="Lade verfügbare Flughäfen für:" />
             <ComboBox x:Name="comboBoxFlugzeug" DisplayMemberPath="Code" Width="150" SelectionChanged="LadeFlughäfenFürSelektiertesFlugzeug"/>
+            <MenuItem Header="Speichern" Click="Speichern_Click"/>
         </Menu>
         <DataGrid x:Name="myDataGrid" CanUserAddRows="True" AutoGenerateColumns="True"
                   AddingNewItem="myDataGrid_AddingNewItem"

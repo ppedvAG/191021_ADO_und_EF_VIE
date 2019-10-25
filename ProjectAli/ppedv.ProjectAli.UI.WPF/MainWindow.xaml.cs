@@ -115,33 +115,69 @@ namespace ppedv.ProjectAli.UI.WPF
 
         private void myDataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            // ----- Hack -----
-            // Wenn man nur Repository.Save() aufruft, wird der "letzte" Zustang gespeichert, die neuen Daten sind dann noch nicht in der DB
-            // Lösung: UI-Thread das Hinzufügen der Objekte beenden lassen und danach (2 sek später) erst in die DB Updaten
-            // Grund: RowEditEnding hat die Daten noch nicht "Commited" -> Sind nicht für den EF-Changetracker sichtbar und somit "Keine neue Änderung"
-            
-            Task.Run(async () =>
+            #region Hack (inaktiv)
+            //// ----- Hack -----
+            //// Wenn man nur Repository.Save() aufruft, wird der "letzte" Zustang gespeichert, die neuen Daten sind dann noch nicht in der DB
+            //// Lösung: UI-Thread das Hinzufügen der Objekte beenden lassen und danach (2 sek später) erst in die DB Updaten
+            //// Grund: RowEditEnding hat die Daten noch nicht "Commited" -> Sind nicht für den EF-Changetracker sichtbar und somit "Keine neue Änderung"
+
+            ////Task.Run(async () =>
+            ////{
+            ////   await Task.Delay(2000);
+            ////    try
+            ////    {
+            ////        core.Repository.Save();
+            ////    }
+            ////    catch (MyConcurrencyException ex)
+            ////    {
+            ////        var result = MessageBox.Show(ex.Message, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            ////        if (result == MessageBoxResult.Yes)
+            ////            ex.UserWins();
+            ////        else
+            ////        {
+            ////            ex.DBWins();
+
+            ////            // UI neuladen
+            ////            if (currentlyLoadedType == typeof(Airport))
+            ////                LadeFlughäfen_Click(sender, null);
+            ////            else
+            ////                LadeFlugzeuge_Click(sender, null);
+
+            ////        }
+            ////    }
+            ////});
+
+            ////// ToDo: dasda testen:
+            ////myDataGrid.CommitEdit();
+            ////core.Repository.Save();
+            #endregion
+        }
+
+        private void Speichern_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-               await Task.Delay(2000);
-                try
+                core.Repository.Save();
+            }
+            catch (MyConcurrencyException ex)
+            {
+                var result = MessageBox.Show(ex.Message, "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    core.Repository.Save();
+                    ex.UserWins();
                 }
-                catch (DbUpdateConcurrencyException ex)
+                else
                 {
-                    
-                    // User-Dialog: "Wollen Sie DB-Version oder Meine-Version ?
-                    // Msgbox 
-                    // -> Auswahl speichern
-                    // -> Datagrid wieder aktualisieren
+                    ex.DBWins();
 
-                    throw;
+                    // UI neuladen
+                    if (currentlyLoadedType == typeof(Airport))
+                        LadeFlughäfen_Click(sender, null);
+                    else
+                        LadeFlugzeuge_Click(sender, null);
+
                 }
-            });
-
-            //// ToDo: dasda testen:
-            //myDataGrid.CommitEdit();
-            //core.Repository.Save();
+            }
         }
     }
 }
