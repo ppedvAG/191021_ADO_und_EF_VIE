@@ -22,7 +22,7 @@ namespace ppedv.ProjectAli.UI.ASP.Controllers
         // GET: Airport
         public ActionResult Index()
         {
-            return View(core.GetAllAirports());
+            return View(core.GetAllAirports().Where(x => x.IsDeleted == false));
         }
 
         // GET: Airport/Details/5
