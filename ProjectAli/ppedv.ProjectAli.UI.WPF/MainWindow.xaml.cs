@@ -42,18 +42,17 @@ namespace ppedv.ProjectAli.UI.WPF
         private void LadeFlugzeuge_Click(object sender, RoutedEventArgs e)
         {
             loadedAircrafts.Clear();
-            foreach (var item in core.GetAllAircraft())
+            foreach (var item in core.GetAllAircraft().Where(x => x.IsDeleted == false))
             {
                 loadedAircrafts.Add(item);
             }
             myDataGrid.ItemsSource = loadedAircrafts;
             currentlyLoadedType = typeof(AircraftType);
         }
-
         private void LadeFlughäfen_Click(object sender, RoutedEventArgs e)
         {
             loadedAirports.Clear();
-            foreach (var item in core.GetAllAirports())
+            foreach (var item in core.GetAllAirports().Where(x => x.IsDeleted == false))
             {
                 loadedAirports.Add(item);
             }
@@ -61,7 +60,6 @@ namespace ppedv.ProjectAli.UI.WPF
             currentlyLoadedType = typeof(Airport);
 
         }
-
         private void LadeFlughäfenFürSelektiertesFlugzeug(object sender, SelectionChangedEventArgs e)
         {
             if (comboBoxFlugzeug.SelectedItem == null)
@@ -73,7 +71,13 @@ namespace ppedv.ProjectAli.UI.WPF
 
         private void LöscheFlugzeug_Click(object sender, RoutedEventArgs e)
         {
+            if (myDataGrid.SelectedItem is AircraftType a) // C# 7.0
+                core.Repository.Delete(a);
+            else if (myDataGrid.SelectedItem is Airport ap)
+                core.Repository.Delete(ap);
 
+            // Löschen passiert immer sofort !
+            Speichern_Click(sender, e);
         }
 
         private void myDataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)

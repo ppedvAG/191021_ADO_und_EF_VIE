@@ -93,13 +93,18 @@ namespace ppedv.ProjectAli.Data.EF
                 ((Entity)item.Entity).ModifiedDate = now;
                 ((Entity)item.Entity).CreationDate = now;
             }
-            // Hard-Delete: Setzen wie unten macht aktuell keinen sinn:
-            //foreach (var item in context.ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted))
-            //{
-            //    ((Entity)item.Entity).ModifiedDate = now;
-            //    ((Entity)item.Entity).DeletedDate = now;
-            //    ((Entity)item.Entity).IsDeleted = true;
-            //}
+            // Variante: SoftDelete
+            foreach (var item in ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted))
+            {
+                item.State = EntityState.Modified;
+                ((Entity)item.Entity).ModifiedDate = now;
+                ((Entity)item.Entity).DeletedDate = now;
+                ((Entity)item.Entity).IsDeleted = true;
+
+                // Daten anonymisiert (bez DSGVO)
+                if (((Entity)item.Entity) is AircraftType a)
+                    a.Manufacturer = Guid.NewGuid().ToString();
+            } 
 
             try
             {
