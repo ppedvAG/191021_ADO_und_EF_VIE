@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ppedv.ProjectAli.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ppedv.ProjectAli.Data.EF
@@ -51,9 +52,15 @@ namespace ppedv.ProjectAli.Data.EF
             modelBuilder.Entity<Airport>().Property(x => x.Iata)
                                           .HasMaxLength(3)
                                           .IsFixedLength();
+
+            modelBuilder.Entity<Airport>().Property(x => x.ModifiedDate)
+                                          .IsConcurrencyToken(); // Wenn dieser Wert anders ist, meldet die DB, dass z.B. beim Update/Delete der Datensatz in der zwischenzeit schon verändert wurde
+
             modelBuilder.Entity<Flight>().Property(x => x.AircraftID)
                                          .HasMaxLength(7)
                                          .IsRequired();
+            modelBuilder.Entity<Flight>().Property(x => x.ModifiedDate)
+                                         .IsConcurrencyToken();
 
 
             modelBuilder.Entity<AircraftType>().Property(x => x.Code)
@@ -67,6 +74,35 @@ namespace ppedv.ProjectAli.Data.EF
                                                .IsRequired();
             modelBuilder.Entity<AircraftType>().Property(x => x.WTC)
                                                .IsRequired();
+            modelBuilder.Entity<AircraftType>().Property(x => x.ModifiedDate)
+                                               .IsConcurrencyToken();
+        }
+
+        public override int SaveChanges() // Jedes mal wenn der Kontext gespeichert wird !!!
+        {
+            DateTime now = DateTime.Now; // zwischenspeichern !!!1111elf
+
+            // Im Changetracker schauen, was sich alles verändert hat:
+            foreach (var item in ChangeTracker.Entries().Where(x => x.State == EntityState.Modified))
+            {
+                ((Entity)item.Entity).ModifiedDate = now;
+            }
+            foreach (var item in ChangeTracker.Entries().Where(x => x.State == EntityState.Added))
+            {
+                ((Entity)item.Entity).ModifiedDate = now;
+                ((Entity)item.Entity).CreationDate = now;
+            }
+            // Hard-Delete: Setzen wie unten macht aktuell keinen sinn:
+            //foreach (var item in context.ChangeTracker.Entries().Where(x => x.State == EntityState.Deleted))
+            //{
+            //    ((Entity)item.Entity).ModifiedDate = now;
+            //    ((Entity)item.Entity).DeletedDate = now;
+            //    ((Entity)item.Entity).IsDeleted = true;
+            //}
+
+
+
+            return base.SaveChanges();
         }
     }
 }

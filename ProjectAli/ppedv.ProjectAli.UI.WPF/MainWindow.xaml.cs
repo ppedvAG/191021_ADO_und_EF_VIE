@@ -1,4 +1,5 @@
-﻿using ppedv.ProjectAli.Data.EF;
+﻿using Microsoft.EntityFrameworkCore;
+using ppedv.ProjectAli.Data.EF;
 using ppedv.ProjectAli.Domain;
 using ppedv.ProjectAli.Logic;
 using System;
@@ -118,12 +119,25 @@ namespace ppedv.ProjectAli.UI.WPF
             // Wenn man nur Repository.Save() aufruft, wird der "letzte" Zustang gespeichert, die neuen Daten sind dann noch nicht in der DB
             // Lösung: UI-Thread das Hinzufügen der Objekte beenden lassen und danach (2 sek später) erst in die DB Updaten
             // Grund: RowEditEnding hat die Daten noch nicht "Commited" -> Sind nicht für den EF-Changetracker sichtbar und somit "Keine neue Änderung"
+            
             Task.Run(async () =>
-           {
+            {
                await Task.Delay(2000);
-               core.Repository.Save();
-           }); ;
+                try
+                {
+                    core.Repository.Save();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    
+                    // User-Dialog: "Wollen Sie DB-Version oder Meine-Version ?
+                    // Msgbox 
+                    // -> Auswahl speichern
+                    // -> Datagrid wieder aktualisieren
 
+                    throw;
+                }
+            });
 
             //// ToDo: dasda testen:
             //myDataGrid.CommitEdit();

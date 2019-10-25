@@ -1,4 +1,5 @@
-﻿using ppedv.ProjectAli.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using ppedv.ProjectAli.Domain;
 using ppedv.ProjectAli.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,8 @@ namespace ppedv.ProjectAli.Data.EF
 
         public void Save()
         {
-            context.SaveChanges();
+            if (context.ChangeTracker.HasChanges())
+                context.SaveChanges();
         }
 
         public void Update<T>(T item) where T : Entity
