@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.Logic.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ppedv.ProjectAli.UI.WPF", "ppedv.ProjectAli.UI.WPF\ppedv.ProjectAli.UI.WPF.csproj", "{BF4C7098-7C8E-4459-B957-E42247BAA5B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFConcurrencyTest", "EFConcurrencyTest\EFConcurrencyTest.csproj", "{391DBDD5-602E-45BC-9DEC-64449843D412}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFConcurrencyTest", "EFConcurrencyTest\EFConcurrencyTest.csproj", "{391DBDD5-602E-45BC-9DEC-64449843D412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ppedv.ProjectAli.UI.ASP", "ppedv.ProjectAli.UI.ASP\ppedv.ProjectAli.UI.ASP.csproj", "{138391B3-9794-4CC8-9DD2-ECBA83091DBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{391DBDD5-602E-45BC-9DEC-64449843D412}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{391DBDD5-602E-45BC-9DEC-64449843D412}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{391DBDD5-602E-45BC-9DEC-64449843D412}.Release|Any CPU.Build.0 = Release|Any CPU
+		{138391B3-9794-4CC8-9DD2-ECBA83091DBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{138391B3-9794-4CC8-9DD2-ECBA83091DBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{138391B3-9794-4CC8-9DD2-ECBA83091DBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{138391B3-9794-4CC8-9DD2-ECBA83091DBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +84,7 @@ Global
 		{0E47523D-9F90-4B8C-9734-962AF29C3DC2} = {ED1FB72D-7FA8-472D-891B-BCDAF6BF9518}
 		{BF4C7098-7C8E-4459-B957-E42247BAA5B4} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
 		{391DBDD5-602E-45BC-9DEC-64449843D412} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
+		{138391B3-9794-4CC8-9DD2-ECBA83091DBB} = {26BE09EE-3B77-4C27-A2A8-3BC94E50003B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E2E7FC3A-8CE7-4F93-9894-491B8E37958C}
