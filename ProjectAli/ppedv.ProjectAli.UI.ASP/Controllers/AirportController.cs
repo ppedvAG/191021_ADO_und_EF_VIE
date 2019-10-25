@@ -76,12 +76,12 @@ namespace ppedv.ProjectAli.UI.ASP.Controllers
                 var loadedItem = core.Repository.GetByID<Airport>(id);
                 if(loadedItem != null)
                 {
-                    core.Repository.Update(loadedItem);
+                    core.Repository.Update(editedItem);
+                    core.Repository.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 else
                     return RedirectToAction(nameof(Index)); // Idee: Andere Seite bei Fehler
-
             }
             catch
             {
@@ -106,6 +106,7 @@ namespace ppedv.ProjectAli.UI.ASP.Controllers
                 if (loadedItem != null)
                 {
                     core.Repository.Delete(loadedItem);
+                    core.Repository.Save();
                     return RedirectToAction(nameof(Index));
                 }
                 else
