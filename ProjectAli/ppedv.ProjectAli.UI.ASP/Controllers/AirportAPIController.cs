@@ -12,7 +12,7 @@ namespace ppedv.ProjectAli.UI.ASP.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Produces("text/xml")]
+    // [Produces("text/xml")]
     public class AirportAPIController : ControllerBase
     {
         private readonly EFContext _context;

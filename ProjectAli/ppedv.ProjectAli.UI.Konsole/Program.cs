@@ -1,4 +1,5 @@
-﻿using ppedv.ProjectAli.Data.EF;
+﻿using Newtonsoft.Json;
+using ppedv.ProjectAli.Data.EF;
 using ppedv.ProjectAli.Domain;
 using ppedv.ProjectAli.Logic;
 using System;
@@ -33,23 +34,36 @@ namespace ppedv.ProjectAli.UI.Konsole
 
             #region ASP - API konsumieren
 
-            Console.WriteLine("Klick für Start:");
-            Console.ReadKey();
+            Console.WriteLine("Bitte wählen Sie die Art des Ergebnisses: XML(1) oder JSON(2)");
+            char erg = Console.ReadKey().KeyChar;
 
             string data = string.Empty;
             Airport[] result = null;
             using (HttpClient client = new HttpClient())
             {
-                data = await client.GetStringAsync("https://localhost:44377/api/AirportAPI");
-                var xmlStream = await client.GetStreamAsync("https://localhost:44377/api/AirportAPI");
+                client.DefaultRequestHeaders.Accept.Clear();
+                if(erg == '1') // JSON
+                {
+                    client.DefaultRequestHeaders.Accept.ParseAdd("text/xml");
+                    data = await client.GetStringAsync("https://localhost:44377/api/AirportAPI");
+                    var xmlStream = await client.GetStreamAsync("https://localhost:44377/api/AirportAPI");
 
-                // <--- Objekte erstellen: Deserialisieren
-                XmlSerializer serializer = new XmlSerializer(typeof(Airport[]));
-                result = (Airport[])serializer.Deserialize(xmlStream);
+                    // <--- Objekte erstellen: Deserialisieren
+                    XmlSerializer serializer = new XmlSerializer(typeof(Airport[]));
+                    result = (Airport[])serializer.Deserialize(xmlStream);
+                }
+                else 
+                {
+                    // Alternative:
+                    client.DefaultRequestHeaders.Accept.ParseAdd("text/json");
+                    data = await client.GetStringAsync("https://localhost:44377/api/AirportAPI");
+                    result = JsonConvert.DeserializeObject<Airport[]>(data);
+                }
+
             }
 
-            Console.WriteLine("----- Heruntergeladenes XML: --------");
-            Console.WriteLine(data); // reines XML
+            Console.WriteLine("----- Heruntergeladenen Daten: --------");
+            Console.WriteLine(data); // XML oder JSON
             Console.WriteLine("-------------------------------------");
 
 
